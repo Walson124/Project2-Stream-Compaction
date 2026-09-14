@@ -20,6 +20,11 @@ namespace StreamCompaction {
         void scan(int n, int *odata, const int *idata) {
             timer().startCpuTimer();
             // TODO
+            int temp = 0;
+            for (int i = 0; i < n; i++) {
+                odata[i] = temp;
+                temp += idata[i];
+            }
             timer().endCpuTimer();
         }
 
@@ -31,7 +36,15 @@ namespace StreamCompaction {
         int compactWithoutScan(int n, int *odata, const int *idata) {
             timer().startCpuTimer();
             // TODO
+            int temp = 0;
+            for (int i = 0; i < n; i++) {
+                if (idata[i] != 0) {
+                    odata[temp] = idata[i];
+                    temp++;
+                }
+            }
             timer().endCpuTimer();
+            return temp;
             return -1;
         }
 
@@ -43,7 +56,34 @@ namespace StreamCompaction {
         int compactWithScan(int n, int *odata, const int *idata) {
             timer().startCpuTimer();
             // TODO
+            // build into booleans
+            // then build sums with boolean to get index
+            // then insert idata[i] into odata[index] when boolean[i] == 1
+            int* booleans = new int[n];
+            int* sums = new int[n];
+            int count = 0;
+            int tempsum = 0;
+            for (int i = 0; i < n; i++) {
+                if (idata[i] != 0) {
+                    booleans[i] = 1;
+                    sums[i] = tempsum;
+                    tempsum++;
+                    count++;
+                }
+                else {
+                    booleans[i] = 0;
+                    sums[i] = tempsum;
+                }
+            }
+            for (int i = 0; i < n; i++) {
+                if (booleans[i] == 1) {
+                    odata[sums[i]] = idata[i];
+                }
+            }
+            delete[] booleans;
+            delete[] sums;
             timer().endCpuTimer();
+            return count;
             return -1;
         }
     }
