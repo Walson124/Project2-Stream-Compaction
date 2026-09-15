@@ -10,14 +10,6 @@ CUDA Stream Compaction
 I added a `/Zc:preprocessor` block at the end of CMakeLists.txt due to a cuda version issue.
 This code block is from this thread on Ed: [Required cmake change for CUDA 13.2+ #33](https://edstem.org/us/courses/101383/discussion/8243429).
 
-Completed:
-- cpu implementation for scan, compactWithoutScan, and compactWithScan
-- naive gpu scan implementation
-- work-efficient gpu scan and stream compaction implementation
-- implementation of scan using thrust
-
-No feedback
-
 ### Parts 1 to 4 results
 
 Default test results:
