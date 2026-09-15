@@ -70,7 +70,7 @@ Default test results:
 
 #### Block size vs elapsed time
 
-Naive scan, and work-efficient scan/compact are included because they have adjustable block sizes.
+Naive scan, and work-efficient scan/compact are included because they have adjustable block sizes. The times below are in ms.
 
 ![Block size vs time chart](img/blocksize_vs_time.png)
 
